@@ -1,5 +1,6 @@
 package com.bootcamp.bankwithdrawal.service;
 
+import com.bootcamp.bankwithdrawal.bean.Withdrawal;
 import com.bootcamp.bankwithdrawal.dto.WithdrawalDto;
 import com.bootcamp.bankwithdrawal.repository.WithdrawalRepository;
 import com.bootcamp.bankwithdrawal.util.AppUtils;
@@ -37,6 +38,11 @@ public class WithdrawalServiceImpl implements WithdrawalService {
         return withdrawalRepository.findByWithdrawalNumber(withdrawalNumber)
                 .switchIfEmpty(Mono.just(WithdrawalDto.builder()
                         .withdrawalNumber(null).build()));
+    }
+
+    @Override
+    public Flux<Withdrawal> findByIdClient(String idClient){
+        return withdrawalRepository.findByIdClient(idClient);
     }
 
 

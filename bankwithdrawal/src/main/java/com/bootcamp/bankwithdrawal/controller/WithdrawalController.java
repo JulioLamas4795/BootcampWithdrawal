@@ -1,5 +1,6 @@
 package com.bootcamp.bankwithdrawal.controller;
 
+import com.bootcamp.bankwithdrawal.bean.Withdrawal;
 import com.bootcamp.bankwithdrawal.dto.WithdrawalDto;
 import com.bootcamp.bankwithdrawal.service.WithdrawalService;
 import org.slf4j.Logger;
@@ -28,6 +29,11 @@ public class WithdrawalController {
     public Mono<WithdrawalDto> getWithdrawal(@PathVariable String id) {
         LOGGER.debug("Getting a withdrawals!");
         return withdrawalService.getWithdrawalById(id);
+    }
+
+    @GetMapping("/client/{idClient}")
+    public Flux<Withdrawal> findByIdClient(@PathVariable String idClient){
+        return withdrawalService.findByIdClient(idClient);
     }
 
     @PostMapping
